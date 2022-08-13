@@ -1,0 +1,16 @@
+.carrinho {
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 50px 100px;
+}
+
+.total {
+  background-color: #EFF9FF;
+  display: flex;
+  justify-content: space-between;
+  max-width: 800px;
+  padding: 16px;
+  width: 100%;
+}
