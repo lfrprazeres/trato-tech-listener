@@ -3,9 +3,9 @@ import categoriasService from 'services/categorias';
 import { adicionarTodasAsCategorias, adicionarUmaCategoria, carregarCategorias, carregarUmaCategoria } from 'store/reducers/categorias';
 import criarTarefa from './utils/criarTarefa';
 
-export const listener = createListenerMiddleware();
+export const categoriasListener = createListenerMiddleware();
 
-listener.startListening({
+categoriasListener.startListening({
   actionCreator: carregarCategorias,
   effect: async (action, { dispatch, fork, unsubscribe }) => {
     const resposta = await criarTarefa({
@@ -23,7 +23,7 @@ listener.startListening({
   }
 });
 
-listener.startListening({
+categoriasListener.startListening({
   actionCreator: carregarUmaCategoria,
   effect: async (action, { fork, dispatch, getState, unsubscribe }) => {
     const { categorias } = getState();
