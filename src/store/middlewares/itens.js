@@ -9,9 +9,17 @@ export const itensListener = createListenerMiddleware();
 itensListener.startListening({
   actionCreator: carregarUmaCategoria,
   effect: async (action, { fork, dispatch, unsubscribe, getState }) => {
+    const { itens } = getState();
+
+    if (itens.length === 25) return unsubscribe();
+
     const nomeCategoria = action.payload;
 
-    const resposta = await criarTarefa({
+    const itensCarregados = itens.some(item => item.categoria === nomeCategoria);
+
+    if (itensCarregados) return;
+
+    await criarTarefa({
       fork,
       dispatch,
       action: adicionarItens,
